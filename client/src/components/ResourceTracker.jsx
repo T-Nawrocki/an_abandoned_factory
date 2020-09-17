@@ -5,7 +5,7 @@ const ResourceTracker = (props) => {
     <div id="resource-tracker">
       <ul>
         <li id="parts-tracker">
-          Parts: {props.parts}
+          Parts {props.parts}
         </li>
       </ul>
     </div>
