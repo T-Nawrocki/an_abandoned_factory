@@ -24,7 +24,7 @@ const Game = () => {
       setParts(parts + partsPerTick)
     }, tickSpeed)
     return () => clearInterval(interval);  // clears interval during cleanup
-  }, [parts]);
+  }, [parts, partsPerTick, tickSpeed]);
 
   return (
     <div id="game-container">
