@@ -4,7 +4,7 @@ export const partsAutoclickers = {
     costResource: "parts", 
     costBase: 10,
     productionResource: "parts",
-    productionBase: 10000000
+    productionBase: 1
   },
   t2: {
     name: "assembly line",

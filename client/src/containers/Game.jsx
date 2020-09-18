@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import MainButton from '../components/MainButton';
+import StoryDisplay from '../components/StoryDisplay';
 import ResourceTracker from '../components/ResourceTracker';
+import MainButton from '../components/MainButton';
 import Shop from './Shop';
 import { partsAutoclickers } from '../data/PartsAutoclickers'
 import { inspirationAutoclickers } from '../data/InspirationAutoclickers'
 import { storyStages } from '../data/StoryStages'
-import StoryDisplay from '../components/StoryDisplay';
 
 const Game = (props) => {
   
   const winGame = props.winGame; // destructuring for use in useEffect
 
+  const [introComplete, setIntroComplete] = useState(false);
+  const [showShop, setShowShop] = useState(false);
   const [storyStage, setStoryStage] = useState(0)
   const [tickSpeed, setTickSpeed] = useState(1000)
   const [parts, setParts] = useState(0);
@@ -78,7 +80,12 @@ const Game = (props) => {
     return () => clearInterval(interval);  // clears interval during cleanup
   }, [parts, partsPerTick, inspiration, inspirationPerTick, tickSpeed]);
 
+  // enable shop display
+  useEffect(() => {
+    if (parts >= partsAutoclickers.t1.costBase * 0.75) setShowShop(true);
+  }, [parts]);
   
+  // win game on final story stage
   useEffect(() => {
     if (storyStage === storyStages.length) winGame()
   }, [storyStage, winGame]);
@@ -86,37 +93,44 @@ const Game = (props) => {
 
   return (
     <div id="game-container">
-      <StoryDisplay storyStage={storyStage}/>
-      <ResourceTracker parts={parts} inspiration={inspiration} />
-      <MainButton handleMainButtonClick={handleMainButtonClick} />
-      <Shop storyStage={storyStage}
-            resources={{
-              parts: parts,
-              inspiration: inspiration
-            }}
-            ownedAutoclickers={{
-              partsT1: ownedPartsAutoclickersT1,
-              partsT2: ownedPartsAutoclickersT2,
-              partsT3: ownedPartsAutoclickersT3,
-              partsT4: ownedPartsAutoclickersT4,
-              inspirationT1: ownedInspirationAutoclickersT1,
-              inspirationT2: ownedInspirationAutoclickersT2,
-              inspirationT3: ownedInspirationAutoclickersT3,
-              inspirationT4: ownedInspirationAutoclickersT4
-            }}
+      <StoryDisplay setIntroComplete={setIntroComplete} 
+                    storyStage={storyStage}/>
+      {introComplete && 
+        <>
+          <ResourceTracker parts={parts} inspiration={inspiration} />
+          <MainButton handleMainButtonClick={handleMainButtonClick} />
+          { showShop &&
+            <Shop storyStage={storyStage}
+                  resources={{
+                    parts: parts,
+                    inspiration: inspiration
+                  }}
+                  ownedAutoclickers={{
+                    partsT1: ownedPartsAutoclickersT1,
+                    partsT2: ownedPartsAutoclickersT2,
+                    partsT3: ownedPartsAutoclickersT3,
+                    partsT4: ownedPartsAutoclickersT4,
+                    inspirationT1: ownedInspirationAutoclickersT1,
+                    inspirationT2: ownedInspirationAutoclickersT2,
+                    inspirationT3: ownedInspirationAutoclickersT3,
+                    inspirationT4: ownedInspirationAutoclickersT4
+                  }}
 
-            addPartsAutoclickersT1={addPartsAutoclickersT1}
-            addPartsAutoclickersT2={addPartsAutoclickersT2}
-            addPartsAutoclickersT3={addPartsAutoclickersT3}
-            addPartsAutoclickersT4={addPartsAutoclickersT4}
-            addInspirationAutoclickersT1={addInspirationAutoclickersT1}
-            addInspirationAutoclickersT2={addInspirationAutoclickersT2}
-            addInspirationAutoclickersT3={addInspirationAutoclickersT3}
-            addInspirationAutoclickersT4={addInspirationAutoclickersT4}
-            reduceParts={reduceParts}
-            reduceInspiration={reduceInspiration}
-            progressStory={progressStory}
-      />
+                  addPartsAutoclickersT1={addPartsAutoclickersT1}
+                  addPartsAutoclickersT2={addPartsAutoclickersT2}
+                  addPartsAutoclickersT3={addPartsAutoclickersT3}
+                  addPartsAutoclickersT4={addPartsAutoclickersT4}
+                  addInspirationAutoclickersT1={addInspirationAutoclickersT1}
+                  addInspirationAutoclickersT2={addInspirationAutoclickersT2}
+                  addInspirationAutoclickersT3={addInspirationAutoclickersT3}
+                  addInspirationAutoclickersT4={addInspirationAutoclickersT4}
+                  reduceParts={reduceParts}
+                  reduceInspiration={reduceInspiration}
+                  progressStory={progressStory}
+            />
+          }
+        </>
+      }
     </div>
   );
 }

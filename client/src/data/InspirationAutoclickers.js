@@ -4,7 +4,7 @@ export const inspirationAutoclickers = {
     costResource: "parts",  
     costBase: 10000, 
     productionResource: "inspiration",
-    productionBase: 10000000  
+    productionBase: 1
   },
   t2: {
     name: "design lab",
