@@ -1,10 +1,10 @@
 export const inspirationAutoclickers = {
   t1: {
     name: "inventor's workshop",
-    costResource: "parts",  // TODO replace magic strings with something better
-    costBase: 10000, // 50,
+    costResource: "parts",  
+    costBase: 10000, 
     productionResource: "inspiration",
-    productionBase: 10000000  // 1
+    productionBase: 10000000  
   },
   t2: {
     name: "design lab",

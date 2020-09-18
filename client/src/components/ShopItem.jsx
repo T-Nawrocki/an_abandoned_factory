@@ -9,9 +9,9 @@ const ShopItem = (props) => {
   const productionBase = props.autoclicker.productionBase;
   const productionResource = props.autoclicker.productionResource;
 
-  const productionModified = productionBase; // TODO
-
-  const costModified = scaled(costBase, props.itemOwned); // TODO
+  const productionModified = productionBase;
+  
+  const costModified = scaled(costBase, props.itemOwned);
   const canAfford = props.costResourceOwned >= costModified;
 
   const buy = () => {

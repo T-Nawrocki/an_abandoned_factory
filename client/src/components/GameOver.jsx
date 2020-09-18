@@ -1,8 +1,11 @@
 import React from 'react';
 
-const GameOver = () => {
+const GameOver = (props) => {
   return (
-    <p>You win. GG.</p>
+    <div id="game-over">
+      <h1>Game over</h1>
+      <button onClick={props.restart}>Return to the Factory</button>
+    </div>
   );
 }
  
