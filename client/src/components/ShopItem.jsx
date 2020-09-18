@@ -18,12 +18,12 @@ const ShopItem = (props) => {
     if (!canAfford) return;
     props.reduceResource(costModified);
     props.addAutoclickers(1);
-  }
+  };
 
   return (
     <div className="shop-item">
       <button onClick={buy} disabled={!canAfford}>
-        Construct {name}
+        Build {name}
       </button>
       <div className="shop-item-owned">
         <b>Owned:</b> {props.itemOwned}

@@ -4,9 +4,13 @@ import ResourceTracker from '../components/ResourceTracker';
 import Shop from './Shop';
 import { partsAutoclickers } from '../data/PartsAutoclickers'
 import { inspirationAutoclickers } from '../data/InspirationAutoclickers'
+import { storyStages } from '../data/StoryStages'
 
-const Game = () => {
+const Game = (props) => {
+  
+  const winGame = props.winGame; // destructuring for use in useEffect
 
+  const [storyStage, setStoryStage] = useState(0)
   const [tickSpeed, setTickSpeed] = useState(1000)
   const [parts, setParts] = useState(0);
   const [inspiration, setInspiration] = useState(0);
@@ -49,6 +53,7 @@ const Game = () => {
   };
 
   const handleMainButtonClick = () => setParts(parts + 1);
+  const progressStory = () => setStoryStage(storyStage + 1)
 
 
   const partsPerTick = 
@@ -72,12 +77,17 @@ const Game = () => {
     return () => clearInterval(interval);  // clears interval during cleanup
   }, [parts, partsPerTick, inspiration, inspirationPerTick, tickSpeed]);
 
+  useEffect(() => {
+    if (storyStage === storyStages.length) winGame()
+  }, [storyStage, winGame]);
+
 
   return (
     <div id="game-container">
       <ResourceTracker parts={parts} inspiration={inspiration} />
       <MainButton handleMainButtonClick={handleMainButtonClick} />
-      <Shop resources={{
+      <Shop storyStage={storyStage}
+            resources={{
               parts: parts,
               inspiration: inspiration
             }}
@@ -91,6 +101,7 @@ const Game = () => {
               inspirationT3: ownedInspirationAutoclickersT3,
               inspirationT4: ownedInspirationAutoclickersT4
             }}
+
             addPartsAutoclickersT1={addPartsAutoclickersT1}
             addPartsAutoclickersT2={addPartsAutoclickersT2}
             addPartsAutoclickersT3={addPartsAutoclickersT3}
@@ -101,6 +112,7 @@ const Game = () => {
             addInspirationAutoclickersT4={addInspirationAutoclickersT4}
             reduceParts={reduceParts}
             reduceInspiration={reduceInspiration}
+            progressStory={progressStory}
       />
     </div>
   );

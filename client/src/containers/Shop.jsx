@@ -2,7 +2,9 @@ import React from 'react';
 import ShopItem from '../components/ShopItem';
 import { partsAutoclickers } from '../data/PartsAutoclickers' 
 import { inspirationAutoclickers } from '../data/InspirationAutoclickers'
+import { storyStages } from '../data/StoryStages'
 import "../styles/Shop.css"
+import StoryUpgrade from '../components/StoryUpgrade';
 
 const Shop = (props) => {
   return (
@@ -76,7 +78,19 @@ const Shop = (props) => {
           addAutoclickers={props.addInspirationAutoclickersT4}
           reduceResource={props.reduceParts}
         />
+      </div>
 
+      <div id="shop-story-upgrades">
+        { props.storyStage < storyStages.length &&  // do not render after final stage
+          <StoryUpgrade 
+            storyStage={props.storyStage}
+            partsOwned={props.resources.parts}
+            inspirationOwned={props.resources.inspiration}
+            reduceParts={props.reduceParts}
+            reduceInspiration={props.reduceInspiration}
+            progressStory={props.progressStory}
+          />
+        }
       </div>
     </div>
   );
