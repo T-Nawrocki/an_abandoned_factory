@@ -2,7 +2,7 @@ export const partsAutoclickers = {
   t1: {
     name: "workstation",
     costResource: "parts",  // TODO replace magic strings with something better
-    costBase: 50,
+    costBase: 10, // 50,
     productionResource: "parts",
     productionBase: 1
   },
