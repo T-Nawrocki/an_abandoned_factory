@@ -8,7 +8,7 @@ const Shop = (props) => {
       <ShopItem
         id="parts-autoclicker-t1"
         details={partsAutoclickers.t1}
-        parts={props.resources.parts}
+        resource={props.resources.parts}
         owned={props.ownedAutoclickers.partsT1}
         addClickers={props.addPartsAutoclickersT1}
         reduceResource={props.reduceParts}
