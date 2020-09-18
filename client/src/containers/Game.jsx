@@ -5,6 +5,7 @@ import Shop from './Shop';
 import { partsAutoclickers } from '../data/PartsAutoclickers'
 import { inspirationAutoclickers } from '../data/InspirationAutoclickers'
 import { storyStages } from '../data/StoryStages'
+import StoryDisplay from '../components/StoryDisplay';
 
 const Game = (props) => {
   
@@ -77,6 +78,7 @@ const Game = (props) => {
     return () => clearInterval(interval);  // clears interval during cleanup
   }, [parts, partsPerTick, inspiration, inspirationPerTick, tickSpeed]);
 
+  
   useEffect(() => {
     if (storyStage === storyStages.length) winGame()
   }, [storyStage, winGame]);
@@ -84,6 +86,7 @@ const Game = (props) => {
 
   return (
     <div id="game-container">
+      <StoryDisplay storyStage={storyStage}/>
       <ResourceTracker parts={parts} inspiration={inspiration} />
       <MainButton handleMainButtonClick={handleMainButtonClick} />
       <Shop storyStage={storyStage}
