@@ -13,6 +13,7 @@ const Game = () => {
   const [ownedPartsAutoclickersT1, setOwnedPartsAutoclickersT1] = useState(0);
   const [ownedPartsAutoclickersT2, setOwnedPartsAutoclickersT2] = useState(0);
   const [ownedPartsAutoclickersT3, setOwnedPartsAutoclickersT3] = useState(0);
+  const [ownedPartsAutoclickersT4, setOwnedPartsAutoclickersT4] = useState(0);
   const [ownedInspirationAutoclickersT1, setOwnedInspirationAutoclickersT1] = useState(0);
   const [ownedInspirationAutoclickersT2, setOwnedInspirationAutoclickersT2] = useState(0);
   const [ownedInspirationAutoclickersT3, setOwnedInspirationAutoclickersT3] = useState(0);
@@ -31,7 +32,21 @@ const Game = () => {
   const addPartsAutoclickersT3 = n => {
     setOwnedPartsAutoclickersT3(ownedPartsAutoclickersT3 + n);
   };
-  
+  const addPartsAutoclickersT4 = n => {
+    setOwnedPartsAutoclickersT4(ownedPartsAutoclickersT4 + n);
+  };
+  const addInspirationAutoclickersT1 = n => {
+    setOwnedInspirationAutoclickersT1(ownedInspirationAutoclickersT1 + n);
+  };
+  const addInspirationAutoclickersT2 = n => {
+    setOwnedInspirationAutoclickersT2(ownedInspirationAutoclickersT2 + n);
+  };
+  const addInspirationAutoclickersT3 = n => {
+    setOwnedInspirationAutoclickersT3(ownedInspirationAutoclickersT3 + n);
+  };
+  const addInspirationAutoclickersT4 = n => {
+    setOwnedInspirationAutoclickersT4(ownedInspirationAutoclickersT4 + n);
+  };
 
   const handleMainButtonClick = () => setParts(parts + 1);
 
@@ -39,7 +54,8 @@ const Game = () => {
   const partsPerTick = 
     ownedPartsAutoclickersT1 * partsAutoclickers.t1.productionBase 
     + ownedPartsAutoclickersT2 * partsAutoclickers.t2.productionBase
-    + ownedPartsAutoclickersT3 * partsAutoclickers.t3.productionBase;
+    + ownedPartsAutoclickersT3 * partsAutoclickers.t3.productionBase
+    + ownedPartsAutoclickersT4 * partsAutoclickers.t4.productionBase;
   const inspirationPerTick = 
     ownedInspirationAutoclickersT1 * inspirationAutoclickers.t1.productionBase
     + ownedInspirationAutoclickersT2 * inspirationAutoclickers.t2.productionBase
@@ -50,10 +66,11 @@ const Game = () => {
   // GameTick
   useEffect(() => {
     const interval = setInterval(() => {
-      setParts(parts + partsPerTick)
+      setParts(parts + partsPerTick);
+      setInspiration(inspiration + inspirationPerTick);
     }, tickSpeed)
     return () => clearInterval(interval);  // clears interval during cleanup
-  }, [parts, partsPerTick, tickSpeed]);
+  }, [parts, partsPerTick, inspiration, inspirationPerTick, tickSpeed]);
 
 
   return (
@@ -61,17 +78,29 @@ const Game = () => {
       <ResourceTracker parts={parts} inspiration={inspiration} />
       <MainButton handleMainButtonClick={handleMainButtonClick} />
       <Shop resources={{
-              parts: parts
+              parts: parts,
+              inspiration: inspiration
             }}
             ownedAutoclickers={{
               partsT1: ownedPartsAutoclickersT1,
               partsT2: ownedPartsAutoclickersT2,
-              partsT3: ownedPartsAutoclickersT3
+              partsT3: ownedPartsAutoclickersT3,
+              partsT4: ownedPartsAutoclickersT4,
+              inspirationT1: ownedInspirationAutoclickersT1,
+              inspirationT2: ownedInspirationAutoclickersT2,
+              inspirationT3: ownedInspirationAutoclickersT3,
+              inspirationT4: ownedInspirationAutoclickersT4
             }}
             addPartsAutoclickersT1={addPartsAutoclickersT1}
             addPartsAutoclickersT2={addPartsAutoclickersT2}
             addPartsAutoclickersT3={addPartsAutoclickersT3}
+            addPartsAutoclickersT4={addPartsAutoclickersT4}
+            addInspirationAutoclickersT1={addInspirationAutoclickersT1}
+            addInspirationAutoclickersT2={addInspirationAutoclickersT2}
+            addInspirationAutoclickersT3={addInspirationAutoclickersT3}
+            addInspirationAutoclickersT4={addInspirationAutoclickersT4}
             reduceParts={reduceParts}
+            reduceInspiration={reduceInspiration}
       />
     </div>
   );

@@ -11,8 +11,8 @@ const ShopItem = (props) => {
 
   const productionModified = productionBase; // TODO
 
-  const costModified = scaled(costBase, props.owned); // TODO
-  const canAfford = props.resource >= costModified;
+  const costModified = scaled(costBase, props.itemOwned); // TODO
+  const canAfford = props.costResourceOwned >= costModified;
 
   const buy = () => {
     if (!canAfford) return;
@@ -23,10 +23,10 @@ const ShopItem = (props) => {
   return (
     <div className="shop-item">
       <button onClick={buy} disabled={!canAfford}>
-        Buy {name}
+        Construct {name}
       </button>
       <div className="shop-item-owned">
-        <b>Owned:</b> {props.owned}
+        <b>Owned:</b> {props.itemOwned}
       </div>
       <div className="shop-item-cost">
         <b>Cost:</b> {costModified} {costResource}
