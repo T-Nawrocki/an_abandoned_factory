@@ -7,6 +7,9 @@ const ResourceTracker = (props) => {
         <li id="parts-tracker">
           Parts {props.parts}
         </li>
+        <li id="inspiration-tracker">
+          Inspiration {props.inspiration}
+        </li>
       </ul>
     </div>
   );

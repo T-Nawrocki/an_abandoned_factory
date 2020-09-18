@@ -3,33 +3,48 @@ import MainButton from '../components/MainButton';
 import ResourceTracker from '../components/ResourceTracker';
 import Shop from './Shop';
 import { partsAutoclickers } from '../data/PartsAutoclickers'
+import { inspirationAutoclickers } from '../data/InspirationAutoclickers'
 
 const Game = () => {
 
   const [tickSpeed, setTickSpeed] = useState(1000)
   const [parts, setParts] = useState(0);
-  const [ownedPartsAutoclickersT1, setownedPartsAutoclickersT1] = useState(0);
-  const [ownedPartsAutoclickersT2, setownedPartsAutoclickersT2] = useState(0);
-  const [ownedPartsAutoclickersT3, setownedPartsAutoclickersT3] = useState(0);
+  const [inspiration, setInspiration] = useState(0);
+  const [ownedPartsAutoclickersT1, setOwnedPartsAutoclickersT1] = useState(0);
+  const [ownedPartsAutoclickersT2, setOwnedPartsAutoclickersT2] = useState(0);
+  const [ownedPartsAutoclickersT3, setOwnedPartsAutoclickersT3] = useState(0);
+  const [ownedInspirationAutoclickersT1, setOwnedInspirationAutoclickersT1] = useState(0);
+  const [ownedInspirationAutoclickersT2, setOwnedInspirationAutoclickersT2] = useState(0);
+  const [ownedInspirationAutoclickersT3, setOwnedInspirationAutoclickersT3] = useState(0);
+  const [ownedInspirationAutoclickersT4, setOwnedInspirationAutoclickersT4] = useState(0);
 
 
-  const handleMainButtonClick = () => setParts(parts + 1);
+  const reduceParts = n => setParts(parts - n);
+  const reduceInspiration = n => setInspiration(inspiration - n);
+
   const addPartsAutoclickersT1 = n => {
-    setownedPartsAutoclickersT1(ownedPartsAutoclickersT1 + n)
+    setOwnedPartsAutoclickersT1(ownedPartsAutoclickersT1 + n);
   };
   const addPartsAutoclickersT2 = n => {
-    setownedPartsAutoclickersT2(ownedPartsAutoclickersT2 + n)
+    setOwnedPartsAutoclickersT2(ownedPartsAutoclickersT2 + n);
   };
   const addPartsAutoclickersT3 = n => {
-    setownedPartsAutoclickersT3(ownedPartsAutoclickersT3 + n)
+    setOwnedPartsAutoclickersT3(ownedPartsAutoclickersT3 + n);
   };
-  const reduceParts = n => setParts(parts - n);
+  
+
+  const handleMainButtonClick = () => setParts(parts + 1);
 
 
   const partsPerTick = 
     ownedPartsAutoclickersT1 * partsAutoclickers.t1.productionBase 
     + ownedPartsAutoclickersT2 * partsAutoclickers.t2.productionBase
     + ownedPartsAutoclickersT3 * partsAutoclickers.t3.productionBase;
+  const inspirationPerTick = 
+    ownedInspirationAutoclickersT1 * inspirationAutoclickers.t1.productionBase
+    + ownedInspirationAutoclickersT2 * inspirationAutoclickers.t2.productionBase
+    + ownedInspirationAutoclickersT3 * inspirationAutoclickers.t3.productionBase
+    + ownedInspirationAutoclickersT4 * inspirationAutoclickers.t4.productionBase
   
 
   // GameTick
@@ -43,8 +58,8 @@ const Game = () => {
 
   return (
     <div id="game-container">
-      <ResourceTracker parts={parts}/>
-      <MainButton handleMainButtonClick={handleMainButtonClick}/>
+      <ResourceTracker parts={parts} inspiration={inspiration} />
+      <MainButton handleMainButtonClick={handleMainButtonClick} />
       <Shop resources={{
               parts: parts
             }}
