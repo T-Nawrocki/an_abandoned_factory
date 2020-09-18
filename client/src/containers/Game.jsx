@@ -6,31 +6,30 @@ import { partsAutoclickers } from '../data/PartsAutoclickers'
 
 const Game = () => {
 
-  // Resource state hooks
+  const [tickSpeed, setTickSpeed] = useState(1000)
   const [parts, setParts] = useState(0);
-  // Autoclicker state hooks
   const [ownedPartsAutoclickersT1, setownedPartsAutoclickersT1] = useState(0);
   const [ownedPartsAutoclickersT2, setownedPartsAutoclickersT2] = useState(0);
   const [ownedPartsAutoclickersT3, setownedPartsAutoclickersT3] = useState(0);
-  // Other state hooks
-  const [tickSpeed, setTickSpeed] = useState(1000)
 
-  // Methods to pass as props
+
   const handleMainButtonClick = () => setParts(parts + 1);
-  const addPartsAutoclickersTier1 = n => {
+  const addPartsAutoclickersT1 = n => {
     setownedPartsAutoclickersT1(ownedPartsAutoclickersT1 + n)
   };
-  const addPartsAutoclickersTier2 = n => {
+  const addPartsAutoclickersT2 = n => {
     setownedPartsAutoclickersT2(ownedPartsAutoclickersT2 + n)
   };
-  const addPartsAutoclickersTier3 = n => {
+  const addPartsAutoclickersT3 = n => {
     setownedPartsAutoclickersT3(ownedPartsAutoclickersT3 + n)
   };
+  const reduceParts = n => setParts(parts - n);
 
-  // Resource per tick calculations
-  const partsPerTick = ownedPartsAutoclickersT1 * partsAutoclickers[0].productionBase 
-    + ownedPartsAutoclickersT2 * partsAutoclickers[1].productionBase
-    + ownedPartsAutoclickersT3 * partsAutoclickers[2].productionBase;
+
+  const partsPerTick = 
+    ownedPartsAutoclickersT1 * partsAutoclickers.t1.productionBase 
+    + ownedPartsAutoclickersT2 * partsAutoclickers.t2.productionBase
+    + ownedPartsAutoclickersT3 * partsAutoclickers.t3.productionBase;
   
 
   // GameTick
@@ -41,18 +40,23 @@ const Game = () => {
     return () => clearInterval(interval);  // clears interval during cleanup
   }, [parts, partsPerTick, tickSpeed]);
 
+
   return (
     <div id="game-container">
       <ResourceTracker parts={parts}/>
       <MainButton handleMainButtonClick={handleMainButtonClick}/>
-      <Shop ownedAutoclickers={{
+      <Shop resources={{
+              parts: parts
+            }}
+            ownedAutoclickers={{
               partsT1: ownedPartsAutoclickersT1,
               partsT2: ownedPartsAutoclickersT2,
               partsT3: ownedPartsAutoclickersT3
             }}
-            addPartsAutoclickersTier1={addPartsAutoclickersTier1}
-            addPartsAutoclickersTier2={addPartsAutoclickersTier2}
-            addPartsAutoclickersTier3={addPartsAutoclickersTier3}
+            addPartsAutoclickersT1={addPartsAutoclickersT1}
+            addPartsAutoclickersT2={addPartsAutoclickersT2}
+            addPartsAutoclickersT3={addPartsAutoclickersT3}
+            reduceParts={reduceParts}
       />
     </div>
   );
