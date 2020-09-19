@@ -6,6 +6,7 @@ import Shop from './Shop';
 import { partsAutoclickers } from '../data/PartsAutoclickers'
 import { inspirationAutoclickers } from '../data/InspirationAutoclickers'
 import { storyStages } from '../data/StoryStages'
+import { storyText } from '../data/StoryText'
 
 const Game = (props) => {
   
@@ -14,9 +15,11 @@ const Game = (props) => {
   // Elements will display when player has this fraction of the resources needed
   const displayThreshold = 0.75 
 
+  // State hooks
   const [introComplete, setIntroComplete] = useState(false);
   const [showShop, setShowShop] = useState(false);
   const [storyStage, setStoryStage] = useState(0)
+  const [newStoryText, setNewStoryText] = useState("");
   const [tickSpeed, setTickSpeed] = useState(1000)
   const [parts, setParts] = useState(0);
   const [inspiration, setInspiration] = useState(0);
@@ -30,9 +33,11 @@ const Game = (props) => {
   const [ownedInspirationAutoclickersT4, setOwnedInspirationAutoclickersT4] = useState(0);
 
 
+  // Pay Resources
   const reduceParts = n => setParts(parts - n);
   const reduceInspiration = n => setInspiration(inspiration - n);
 
+  // Add Autoclickers
   const addPartsAutoclickersT1 = n => {
     setOwnedPartsAutoclickersT1(ownedPartsAutoclickersT1 + n);
   };
@@ -58,10 +63,12 @@ const Game = (props) => {
     setOwnedInspirationAutoclickersT4(ownedInspirationAutoclickersT4 + n);
   };
 
+  // Other gameplay methods
   const handleMainButtonClick = () => setParts(parts + 1);
   const progressStory = () => setStoryStage(storyStage + 1)
 
 
+  //Resources per tick
   const partsPerTick = 
     ownedPartsAutoclickersT1 * partsAutoclickers.t1.productionBase 
     + ownedPartsAutoclickersT2 * partsAutoclickers.t2.productionBase
@@ -83,6 +90,17 @@ const Game = (props) => {
     return () => clearInterval(interval);  // clears interval during cleanup
   }, [parts, partsPerTick, inspiration, inspirationPerTick, tickSpeed]);
 
+  // intro
+  useEffect(() => {
+    if (!introComplete) {
+      setNewStoryText(storyText.intro);
+      const timeout = setTimeout(() => {
+        setIntroComplete(true);
+      }, 5000);
+      return () => clearTimeout(timeout);
+    }
+  }, []);
+
   // enable shop display
   useEffect(() => {
     if (parts >= partsAutoclickers.t1.costBase * displayThreshold) setShowShop(true);
@@ -96,8 +114,7 @@ const Game = (props) => {
 
   return (
     <div id="game-container">
-      <StoryDisplay setIntroComplete={setIntroComplete} 
-                    storyStage={storyStage}/>
+      <StoryDisplay newText={newStoryText}/>
       {introComplete && 
         <>
           <ResourceTracker parts={parts} 

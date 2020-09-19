@@ -36,7 +36,7 @@ const Shop = (props) => {
       parts >= storyStages[storyStage].partsCost * displayThreshold &&
       inspiration >= storyStages[storyStage].inspirationCost * displayThreshold
     ) setShowStoryUpgrade(true);
-  }, [displayThreshold, parts, inspiration, storyStage]);
+  }, [displayThreshold, parts, inspiration, showStoryUpgrade, storyStage]);
 
   return (
     <div id="shop">
