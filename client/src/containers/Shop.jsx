@@ -9,6 +9,7 @@ import "../styles/Shop.css"
 const Shop = (props) => {
 
   // Destructuring for useEffect
+  const displayThreshold = props.displayThreshold;
   const parts = props.resources.parts;
   const inspiration = props.resources.inspiration;
   const storyStage = props.storyStage;
@@ -23,18 +24,18 @@ const Shop = (props) => {
   const [showStoryUpgrade, setShowStoryUpgrade] = useState(false);
 
   useEffect(() => {
-    if (parts >= partsAutoclickers.t2.costBase * 0.75) setShowPartsT2(true);
-    if (parts >= partsAutoclickers.t3.costBase * 0.75) setShowPartsT3(true);
-    if (parts >= partsAutoclickers.t4.costBase * 0.75) setShowPartsT4(true);
-    if (parts >= inspirationAutoclickers.t1.costBase * 0.75) setShowInspirationT1(true);
-    if (parts >= inspirationAutoclickers.t2.costBase * 0.75) setShowInspirationT2(true);
-    if (parts >= inspirationAutoclickers.t3.costBase * 0.75) setShowInspirationT3(true);
-    if (parts >= inspirationAutoclickers.t4.costBase * 0.75) setShowInspirationT4(true);
+    if (parts >= partsAutoclickers.t2.costBase * displayThreshold) setShowPartsT2(true);
+    if (parts >= partsAutoclickers.t3.costBase * displayThreshold) setShowPartsT3(true);
+    if (parts >= partsAutoclickers.t4.costBase * displayThreshold) setShowPartsT4(true);
+    if (parts >= inspirationAutoclickers.t1.costBase * displayThreshold) setShowInspirationT1(true);
+    if (parts >= inspirationAutoclickers.t2.costBase * displayThreshold) setShowInspirationT2(true);
+    if (parts >= inspirationAutoclickers.t3.costBase * displayThreshold) setShowInspirationT3(true);
+    if (parts >= inspirationAutoclickers.t4.costBase * displayThreshold) setShowInspirationT4(true);
     if (
-      parts >= storyStages[storyStage].partsCost * 0.75 &&
-      inspiration >= storyStages[storyStage].inspirationCost * 0.75
+      parts >= storyStages[storyStage].partsCost * displayThreshold &&
+      inspiration >= storyStages[storyStage].inspirationCost * displayThreshold
     ) setShowStoryUpgrade(true);
-  }, [parts, inspiration, storyStage]);
+  }, [displayThreshold, parts, inspiration, storyStage]);
 
   return (
     <div id="shop">

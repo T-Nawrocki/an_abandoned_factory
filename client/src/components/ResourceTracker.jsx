@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { inspirationAutoclickers } from '../data/InspirationAutoclickers' 
 
 const ResourceTracker = (props) => {
+  
+  // destructuring for useeffect
+  const parts = props.parts; 
+  const displayThreshold = props.displayThreshold;
 
-  const parts = props.parts;  // destructuring for useeffect
   const [showInspiration, setShowInspiration] = useState(false);
 
   // enable inspiration display
   useEffect(() => {
-    if (parts >= inspirationAutoclickers.t1.costBase * 0.75) setShowInspiration(true);
-  }, [parts]);
+    if (parts >= inspirationAutoclickers.t1.costBase * displayThreshold) setShowInspiration(true);
+  }, [parts, displayThreshold]);
 
   return (
     <div id="resource-tracker">

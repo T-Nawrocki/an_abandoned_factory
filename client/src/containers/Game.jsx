@@ -11,6 +11,9 @@ const Game = (props) => {
   
   const winGame = props.winGame; // destructuring for use in useEffect
 
+  // Elements will display when player has this fraction of the resources needed
+  const displayThreshold = 0.75 
+
   const [introComplete, setIntroComplete] = useState(false);
   const [showShop, setShowShop] = useState(false);
   const [storyStage, setStoryStage] = useState(0)
@@ -82,7 +85,7 @@ const Game = (props) => {
 
   // enable shop display
   useEffect(() => {
-    if (parts >= partsAutoclickers.t1.costBase * 0.75) setShowShop(true);
+    if (parts >= partsAutoclickers.t1.costBase * displayThreshold) setShowShop(true);
   }, [parts]);
   
   // win game on final story stage
@@ -97,10 +100,14 @@ const Game = (props) => {
                     storyStage={storyStage}/>
       {introComplete && 
         <>
-          <ResourceTracker parts={parts} inspiration={inspiration} />
+          <ResourceTracker parts={parts} 
+                           inspiration={inspiration}
+                           displayThreshold={displayThreshold} 
+          />
           <MainButton handleMainButtonClick={handleMainButtonClick} />
           { showShop &&
-            <Shop storyStage={storyStage}
+            <Shop displayThreshold={displayThreshold}
+                  storyStage={storyStage}
                   resources={{
                     parts: parts,
                     inspiration: inspiration
