@@ -31,7 +31,8 @@ const Shop = (props) => {
     if (parts >= inspirationAutoclickers.t2.costBase * displayThreshold) setShowInspirationT2(true);
     if (parts >= inspirationAutoclickers.t3.costBase * displayThreshold) setShowInspirationT3(true);
     if (parts >= inspirationAutoclickers.t4.costBase * displayThreshold) setShowInspirationT4(true);
-    if (
+    if ( 
+      !showStoryUpgrade &&
       parts >= storyStages[storyStage].partsCost * displayThreshold &&
       inspiration >= storyStages[storyStage].inspirationCost * displayThreshold
     ) setShowStoryUpgrade(true);
