@@ -15,11 +15,11 @@ const ResourceTracker = (props) => {
     <div id="resource-tracker">
       <ul>
         <li id="parts-tracker">
-          Parts {props.parts}
+          Parts { props.parts.toLocaleString(undefined) }
         </li>
-        {showInspiration &&
+        { showInspiration &&
           <li id="inspiration-tracker">
-            Inspiration {props.inspiration}
+            Inspiration { props.inspiration.toLocaleString(undefined) }
           </li>
         }
       </ul>

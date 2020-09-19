@@ -23,12 +23,12 @@ const StoryUpgrade = (props) => {
       </button>
       { partsCost > 0 &&
         <div className="story-upgrade-parts-cost">
-          <b>Parts:</b> {partsCost}
+          <b>Parts:</b> {partsCost.toLocaleString(undefined)}
         </div>
       }
       { inspirationCost > 0 &&
         <div className="story-upgrade-inspiration-cost">
-          <b>Inspiration:</b> {inspirationCost}
+          <b>Inspiration:</b> {inspirationCost.toLocaleString(undefined)}
         </div>
       }
     </div>

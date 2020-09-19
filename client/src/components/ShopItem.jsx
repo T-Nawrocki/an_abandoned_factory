@@ -26,13 +26,13 @@ const ShopItem = (props) => {
         Build {name}
       </button>
       <div className="shop-item-owned">
-        <b>Owned:</b> {props.itemOwned}
+        <b>Owned:</b> {props.itemOwned.toLocaleString(undefined)}
       </div>
       <div className="shop-item-cost">
-        <b>Cost:</b> {costModified} {costResource}
+        <b>Cost:</b> {costModified.toLocaleString(undefined)} {costResource}
       </div>
       <div className="shop-item-production">
-        <b>Production:</b> {productionModified} {productionResource} per tick
+        <b>Production:</b> {productionModified.toLocaleString(undefined)} {productionResource} per tick
       </div>
     </div>
   );

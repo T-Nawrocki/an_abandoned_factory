@@ -1,12 +1,41 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import ShopItem from '../components/ShopItem';
+import StoryUpgrade from '../components/StoryUpgrade';
 import { partsAutoclickers } from '../data/PartsAutoclickers' 
 import { inspirationAutoclickers } from '../data/InspirationAutoclickers'
 import { storyStages } from '../data/StoryStages'
 import "../styles/Shop.css"
-import StoryUpgrade from '../components/StoryUpgrade';
 
 const Shop = (props) => {
+
+  // Destructuring for useEffect
+  const parts = props.resources.parts;
+  const inspiration = props.resources.inspiration;
+  const storyStage = props.storyStage;
+
+  const [showPartsT2, setShowPartsT2] = useState(false);
+  const [showPartsT3, setShowPartsT3] = useState(false);
+  const [showPartsT4, setShowPartsT4] = useState(false);
+  const [showInspirationT1, setShowInspirationT1] = useState(false);
+  const [showInspirationT2, setShowInspirationT2] = useState(false);
+  const [showInspirationT3, setShowInspirationT3] = useState(false);
+  const [showInspirationT4, setShowInspirationT4] = useState(false);
+  const [showStoryUpgrade, setShowStoryUpgrade] = useState(false);
+
+  useEffect(() => {
+    if (parts >= partsAutoclickers.t2.costBase * 0.75) setShowPartsT2(true);
+    if (parts >= partsAutoclickers.t3.costBase * 0.75) setShowPartsT3(true);
+    if (parts >= partsAutoclickers.t4.costBase * 0.75) setShowPartsT4(true);
+    if (parts >= inspirationAutoclickers.t1.costBase * 0.75) setShowInspirationT1(true);
+    if (parts >= inspirationAutoclickers.t2.costBase * 0.75) setShowInspirationT2(true);
+    if (parts >= inspirationAutoclickers.t3.costBase * 0.75) setShowInspirationT3(true);
+    if (parts >= inspirationAutoclickers.t4.costBase * 0.75) setShowInspirationT4(true);
+    if (
+      parts >= storyStages[storyStage].partsCost * 0.75 &&
+      inspiration >= storyStages[storyStage].inspirationCost * 0.75
+    ) setShowStoryUpgrade(true);
+  }, [parts, inspiration, storyStage]);
+
   return (
     <div id="shop">
 
@@ -19,69 +48,84 @@ const Shop = (props) => {
           addAutoclickers={props.addPartsAutoclickersT1}
           reduceResource={props.reduceParts}
         />
-        <ShopItem
-          id="parts-autoclicker-t2"
-          autoclicker={partsAutoclickers.t2}
-          costResourceOwned={props.resources.parts}
-          itemOwned={props.ownedAutoclickers.partsT2}
-          addAutoclickers={props.addPartsAutoclickersT2}
-          reduceResource={props.reduceParts}
-        />
-        <ShopItem
-          id="parts-autoclicker-t3"
-          autoclicker={partsAutoclickers.t3}
-          costResourceOwned={props.resources.parts}
-          itemOwned={props.ownedAutoclickers.partsT3}
-          addAutoclickers={props.addPartsAutoclickersT3}
-          reduceResource={props.reduceParts}
-        />
-        <ShopItem
-          id="parts-autoclicker-t4"
-          autoclicker={partsAutoclickers.t4}
-          costResourceOwned={props.resources.parts}
-          itemOwned={props.ownedAutoclickers.partsT4}
-          addAutoclickers={props.addPartsAutoclickersT4}
-          reduceResource={props.reduceParts}
-        />
+        { showPartsT2 &&
+          <ShopItem
+            id="parts-autoclicker-t2"
+            autoclicker={partsAutoclickers.t2}
+            costResourceOwned={props.resources.parts}
+            itemOwned={props.ownedAutoclickers.partsT2}
+            addAutoclickers={props.addPartsAutoclickersT2}
+            reduceResource={props.reduceParts}
+          />
+        }
+        { showPartsT3 &&
+          <ShopItem
+            id="parts-autoclicker-t3"
+            autoclicker={partsAutoclickers.t3}
+            costResourceOwned={props.resources.parts}
+            itemOwned={props.ownedAutoclickers.partsT3}
+            addAutoclickers={props.addPartsAutoclickersT3}
+            reduceResource={props.reduceParts}
+          />
+        }
+        { showPartsT4 &&
+          <ShopItem
+            id="parts-autoclicker-t4"
+            autoclicker={partsAutoclickers.t4}
+            costResourceOwned={props.resources.parts}
+            itemOwned={props.ownedAutoclickers.partsT4}
+            addAutoclickers={props.addPartsAutoclickersT4}
+            reduceResource={props.reduceParts}
+          />
+        }
       </div>
 
       <div id="shop-inspiration-autoclickers">
-        <ShopItem
-          id="inspiration-autoclicker-t1"
-          autoclicker={inspirationAutoclickers.t1}
-          costResourceOwned={props.resources.parts}
-          itemOwned={props.ownedAutoclickers.inspirationT1}
-          addAutoclickers={props.addInspirationAutoclickersT1}
-          reduceResource={props.reduceParts}
-        />
-        <ShopItem
-          id="inspiration-autoclicker-t2"
-          autoclicker={inspirationAutoclickers.t2}
-          costResourceOwned={props.resources.parts}
-          itemOwned={props.ownedAutoclickers.inspirationT2}
-          addAutoclickers={props.addInspirationAutoclickersT2}
-          reduceResource={props.reduceParts}
-        />
-        <ShopItem
-          id="inspiration-autoclicker-t3"
-          autoclicker={inspirationAutoclickers.t3}
-          costResourceOwned={props.resources.parts}
-          itemOwned={props.ownedAutoclickers.inspirationT3}
-          addAutoclickers={props.addInspirationAutoclickersT3}
-          reduceResource={props.reduceParts}
-        />
-        <ShopItem
-          id="inspiration-autoclicker-t4"
-          autoclicker={inspirationAutoclickers.t4}
-          costResourceOwned={props.resources.parts}
-          itemOwned={props.ownedAutoclickers.inspirationT4}
-          addAutoclickers={props.addInspirationAutoclickersT4}
-          reduceResource={props.reduceParts}
-        />
+        { showInspirationT1 &&
+          <ShopItem
+            id="inspiration-autoclicker-t1"
+            autoclicker={inspirationAutoclickers.t1}
+            costResourceOwned={props.resources.parts}
+            itemOwned={props.ownedAutoclickers.inspirationT1}
+            addAutoclickers={props.addInspirationAutoclickersT1}
+            reduceResource={props.reduceParts}
+          />
+        }
+        { showInspirationT2 &&
+          <ShopItem
+            id="inspiration-autoclicker-t2"
+            autoclicker={inspirationAutoclickers.t2}
+            costResourceOwned={props.resources.parts}
+            itemOwned={props.ownedAutoclickers.inspirationT2}
+            addAutoclickers={props.addInspirationAutoclickersT2}
+            reduceResource={props.reduceParts}
+          />
+        }
+        { showInspirationT3 &&
+          <ShopItem
+            id="inspiration-autoclicker-t3"
+            autoclicker={inspirationAutoclickers.t3}
+            costResourceOwned={props.resources.parts}
+            itemOwned={props.ownedAutoclickers.inspirationT3}
+            addAutoclickers={props.addInspirationAutoclickersT3}
+            reduceResource={props.reduceParts}
+          />
+        }
+        { showInspirationT4 &&
+          <ShopItem
+            id="inspiration-autoclicker-t4"
+            autoclicker={inspirationAutoclickers.t4}
+            costResourceOwned={props.resources.parts}
+            itemOwned={props.ownedAutoclickers.inspirationT4}
+            addAutoclickers={props.addInspirationAutoclickersT4}
+            reduceResource={props.reduceParts}
+          />
+        }
       </div>
 
       <div id="shop-story-upgrades">
-        { props.storyStage < storyStages.length &&  // do not render after final stage
+        { showStoryUpgrade &&
+          props.storyStage < storyStages.length &&  // do not render after final stage
           <StoryUpgrade 
             storyStage={props.storyStage}
             partsOwned={props.resources.parts}
