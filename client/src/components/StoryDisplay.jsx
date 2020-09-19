@@ -6,7 +6,7 @@ const StoryDisplay = (props) => {
   const [display, setDisplay] = useState("");
 
   useEffect(() => {
-    setDisplay(...display, newText);
+    setDisplay(display + "\n\n"  + newText);
   }, [newText])
 
   return (

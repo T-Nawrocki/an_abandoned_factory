@@ -99,7 +99,7 @@ const Game = (props) => {
       }, 5000);
       return () => clearTimeout(timeout);
     }
-  }, []);
+  }, [introComplete]);
 
   // enable shop display
   useEffect(() => {
