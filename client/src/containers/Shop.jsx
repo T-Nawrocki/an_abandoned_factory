@@ -4,7 +4,7 @@ import StoryUpgrade from '../components/StoryUpgrade';
 import { partsAutoclickers } from '../data/PartsAutoclickers' 
 import { inspirationAutoclickers } from '../data/InspirationAutoclickers'
 import { storyStages } from '../data/StoryStages'
-import "../styles/Shop.css"
+import "../styles/Shop.scss"
 
 const Shop = (props) => {
 

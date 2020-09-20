@@ -109,7 +109,7 @@ const Game = (props) => {
   // Story progression
   useEffect(() => {
     if (storyStage === storyStages.length) { winGame(); }
-    else if (storyStage != 0) {
+    else if (storyStage !== 0) {
       const completedStage = storyStage - 1;
       setNewStoryText(storyStages[completedStage].description);  
     }
