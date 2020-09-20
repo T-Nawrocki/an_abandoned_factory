@@ -106,9 +106,13 @@ const Game = (props) => {
     if (parts >= partsAutoclickers.t1.costBase * displayThreshold) setShowShop(true);
   }, [parts]);
   
-  // win game on final story stage
+  // Story progression
   useEffect(() => {
-    if (storyStage === storyStages.length) winGame()
+    if (storyStage === storyStages.length) { winGame(); }
+    else if (storyStage != 0) {
+      const completedStage = storyStage - 1;
+      setNewStoryText(storyStages[completedStage].description);  
+    }
   }, [storyStage, winGame]);
 
 

@@ -11,7 +11,7 @@ const StoryDisplay = (props) => {
 
   return (
     <div id="story-display">
-      <p>{display}</p>
+      {display}
     </div>
   );
 }
