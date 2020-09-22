@@ -1,4 +1,7 @@
+@use 'common/colours';
+
 #shop {
   display: flex;
   margin-top: 25px;
+  border: colours.$light 2px solid;
 }
