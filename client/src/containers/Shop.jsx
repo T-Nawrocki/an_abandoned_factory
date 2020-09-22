@@ -41,7 +41,8 @@ const Shop = (props) => {
   return (
     <div id="shop">
 
-      <div id="shop-parts-autoclickers">
+      <div className="shop-column"
+           id="shop-parts-autoclickers">
         <ShopItem
           id="parts-autoclicker-t1"
           autoclicker={partsAutoclickers.t1}
@@ -82,7 +83,8 @@ const Shop = (props) => {
         }
       </div>
 
-      <div id="shop-inspiration-autoclickers">
+      <div className="shop-column"
+           id="shop-inspiration-autoclickers">
         { showInspirationT1 &&
           <ShopItem
             id="inspiration-autoclicker-t1"
@@ -125,7 +127,8 @@ const Shop = (props) => {
         }
       </div>
 
-      <div id="shop-story-upgrades">
+      <div className="shop-column"
+           id="shop-story-upgrades">
         { showStoryUpgrade &&
           props.storyStage < storyStages.length &&  // do not render after final stage
           <StoryUpgrade 

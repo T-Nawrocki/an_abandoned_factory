@@ -4,4 +4,11 @@
   display: flex;
   margin-top: 25px;
   border: colours.$light 2px solid;
+
+  .shop-column{
+    flex: 1;
+  }
+
 }
+  
+

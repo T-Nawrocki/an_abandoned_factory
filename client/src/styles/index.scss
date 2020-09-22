@@ -9,6 +9,7 @@ body {
   text-align: center;
   font-family: fonts.$main;
   color: colours.$light;
+  user-select: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

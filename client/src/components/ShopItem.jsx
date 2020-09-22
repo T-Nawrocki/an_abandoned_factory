@@ -1,5 +1,6 @@
 import React from 'react';
-import { scaled } from '../helpers/CostScaling'
+import { scaled } from '../helpers/CostScaling';
+import '../styles/ShopItem.scss';
 
 const ShopItem = (props) => {
 
@@ -22,16 +23,18 @@ const ShopItem = (props) => {
 
   return (
     <div className="shop-item">
-      <button onClick={buy} disabled={!canAfford}>
+      <div className="shop-item-button"
+           onClick={buy} 
+           disabled={!canAfford}>
         Build {name}
-      </button>
-      <div className="shop-item-owned">
+      </div>
+      <div className="shop-item-detail">
         <b>Owned:</b> {props.itemOwned.toLocaleString(undefined)}
       </div>
-      <div className="shop-item-cost">
+      <div className="shop-item-detail">
         <b>Cost:</b> {costModified.toLocaleString(undefined)} {costResource}
       </div>
-      <div className="shop-item-production">
+      <div className="shop-item-detail">
         <b>Production:</b> {productionModified.toLocaleString(undefined)} {productionResource} per tick
       </div>
     </div>

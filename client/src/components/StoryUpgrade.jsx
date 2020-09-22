@@ -17,17 +17,19 @@ const StoryUpgrade = (props) => {
   };
 
   return (
-    <div className="story-upgrade">
-      <button onClick={buy} disabled={!canAfford}>
+    <div className="shop-item story-upgrade">
+      <div className="shop-item-button"
+           onClick={buy} 
+           disabled={!canAfford}>
         {name}
-      </button>
+      </div>
       { partsCost > 0 &&
-        <div className="story-upgrade-parts-cost">
+        <div className="shop-item-detail">
           <b>Parts:</b> {partsCost.toLocaleString(undefined)}
         </div>
       }
       { inspirationCost > 0 &&
-        <div className="story-upgrade-inspiration-cost">
+        <div className="shop-item-detail">
           <b>Inspiration:</b> {inspirationCost.toLocaleString(undefined)}
         </div>
       }

@@ -1,0 +1,35 @@
+@use 'common/colours';
+
+.shop-item {
+  margin: 10px;
+  font-size: 0.8em;  
+}
+
+.shop-item-button {
+  display: inline-flex;
+  height: 30px;
+  width: 150px;
+  margin-bottom: 10px;
+  border: 2px solid colours.$light;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-transform: uppercase;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all .45s ease-Out;
+
+
+  &:hover {
+    background-color: colours.$light;
+    color: colours.$dark;
+  }
+
+  &:active {
+    background-color: colours.$dark;
+    color: colours.$light;
+    transition: none;
+  }
+
+}
