@@ -12,7 +12,9 @@ const StoryDisplay = (props) => {
 
   return (
     <div id="story-display">
-      <p>{display}</p>
+      <div id="story-display-text">
+        {display}
+      </div>
     </div>
   );
 }
