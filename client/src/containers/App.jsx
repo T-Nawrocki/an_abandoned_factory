@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Game from './Game';
 import GameOver from '../components/GameOver'
-import '../styles/App.scss';
 
 function App() {
   const [gameOver, setGameOver] = useState(false);

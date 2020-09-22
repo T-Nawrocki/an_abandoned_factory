@@ -1,9 +1,13 @@
 import React from 'react';
+import '../styles/MainButton.scss';
 
 const MainButton = (props) => {
   
   return (
-    <button onClick={props.handleMainButtonClick}>Build Parts</button>
+    <div id="main-button" onClick={props.handleMainButtonClick}>
+      <div id="main-button-circle" />
+      <div id="main-button-label">Build Parts</div>
+    </div>
   );
 }
  

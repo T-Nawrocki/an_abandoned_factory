@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../styles/Display.scss';
 
 const StoryDisplay = (props) => {
   
@@ -6,12 +7,12 @@ const StoryDisplay = (props) => {
   const [display, setDisplay] = useState("");
 
   useEffect(() => {
-    setDisplay(display + "\n\n"  + newText);
+    setDisplay(display + newText);
   }, [newText])
 
   return (
     <div id="story-display">
-      {display}
+      <p>{display}</p>
     </div>
   );
 }
