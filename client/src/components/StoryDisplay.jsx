@@ -11,8 +11,8 @@ const StoryDisplay = (props) => {
   }, [newText])
 
   return (
-    <div id="story-display">
-      <div id="story-display-text">
+    <div className="story-display">
+      <div className="story-display-text">
         {display}
       </div>
     </div>

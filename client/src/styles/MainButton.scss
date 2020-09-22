@@ -1,6 +1,10 @@
 @use 'common/colours';
 
-#main-button {
+#restart-button {
+  height: 50px;
+}
+
+.main-button {
   display: inline-flex;
   position: relative;
   height: 40px;
@@ -18,7 +22,7 @@
   overflow: hidden;
   cursor: pointer;
 
-  #main-button-label {
+  .main-button-label {
     position: relative;
     color: colours.$light;
     text-decoration: none;
@@ -27,7 +31,7 @@
     transition: all .45s ease-Out;
   }
 
-  #main-button-circle {
+  .main-button-circle {
     width: 0%;
     height: 0%;
     opacity: 0;
@@ -42,11 +46,11 @@
 
   &:hover {
 
-    #main-button-label {
+    .main-button-label {
       color: colours.$dark;
     }
 
-    #main-button-circle {
+    .main-button-circle {
       width: 200%;
       height: 500%;
       opacity: 1;

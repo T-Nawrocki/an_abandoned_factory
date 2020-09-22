@@ -4,14 +4,18 @@ import { storyText } from '../data/StoryText'
 const GameOver = (props) => {
   return (
     <div id="game-over">
-      <div id="game-over-story-display">
-        {storyText.winGame}
-      </div>
-      <div id="restart-pane">
-        <h1>Game over</h1>
-        <button onClick={props.restart}>Return to the Factory</button>
+      
+      <div className="story-display">
+        <div className="story-display-text">
+          {storyText.winGame}
+        </div>
       </div>
       
+      <div id="restart-button" className="main-button" onClick={props.restart}>
+        <div className="main-button-circle" />
+        <div className="main-button-label">Return to the Factory</div>
+      </div>
+
     </div>
   );
 }
