@@ -1,0 +1,22 @@
+@use 'common/colours';
+
+#resource-tracker {
+
+  display: flex;
+  justify-content: space-around;
+  list-style-type: none;
+  margin: 5% 10%;
+  padding: 0 20% 20px 20%;
+  border-bottom: colours.$light 4px solid;
+  
+  .resource-tracker-item {
+    font-size: 1em;
+    text-transform: uppercase;
+
+    .resource-tracker-item-name {
+      font-weight: bold;
+    }
+
+  }
+  
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../styles/Display.scss';
+import '../styles/StoryDisplay.scss';
 
 const StoryDisplay = (props) => {
   

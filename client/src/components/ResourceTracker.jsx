@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { inspirationAutoclickers } from '../data/InspirationAutoclickers' 
+import { inspirationAutoclickers } from '../data/InspirationAutoclickers';
+import '../styles/ResourceTracker.scss';
 
 const ResourceTracker = (props) => {
   
   // destructuring for useeffect
-  const parts = props.parts; 
+  const parts = props.parts;
   const displayThreshold = props.displayThreshold;
 
   const [showInspiration, setShowInspiration] = useState(false);
@@ -15,18 +16,22 @@ const ResourceTracker = (props) => {
   }, [parts, displayThreshold]);
 
   return (
-    <div id="resource-tracker">
-      <ul>
-        <li id="parts-tracker">
-          Parts { props.parts.toLocaleString(undefined) }
+      <ul id="resource-tracker">
+        <li className="resource-tracker-item">
+          <div className="resource-tracker-item-name">Parts</div>
+          <div className="resource-tracker-item-amount">
+            { props.parts.toLocaleString(undefined) }
+          </div>
         </li>
         { showInspiration &&
-          <li id="inspiration-tracker">
-            Inspiration { props.inspiration.toLocaleString(undefined) }
+          <li className="resource-tracker-item">
+            <div className="resource-tracker-item-name">Inspiration</div>
+            <div className="resource-tracker-item-amount">
+            { props.inspiration.toLocaleString(undefined) }
+            </div>
           </li>
         }
       </ul>
-    </div>
   );
 }
  
