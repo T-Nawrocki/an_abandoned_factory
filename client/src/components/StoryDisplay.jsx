@@ -5,31 +5,15 @@ const StoryDisplay = (props) => {
   
   const newText = props.newText;
   const [display, setDisplay] = useState("");
-
-  // const type = text => {
-  //   const typingSpeed = 100;
-
-
-
-    // let i = 0;
-    // while (i < text.length) {
-    //   setDisplay(display + text[i]);
-    //   i++;
-    // }
-
-    // for (let i = 0; i < text.length; i++) {
-    //   const char = text[i];
-    //   console.log('char :>> ', char);
-    //   setTimeout(setDisplay(display + char), typingSpeed)
-    // //   setDisplay(display + char);
-    // }
-  // };
+  const typingSpeed = 50;
 
   useEffect(() => {
-    setDisplay(display + newText);
-    // type(newText)
-    // eslint-disable-next-line
-  }, [newText]) 
+    if (display.length === newText.length) return;
+    const timeout = setTimeout(() => {
+      setDisplay(display + newText[display.length]);
+    }, typingSpeed);
+    return () => clearInterval(timeout);
+  }, [newText, display]) 
 
   return (
     <div className="story-display">
