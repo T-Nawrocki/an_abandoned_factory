@@ -21,7 +21,39 @@
   .story-display {
     // justify-self: center;
     align-self: center;
-    height: 25%;
+    height: 35%;
+  }
+
+  .save-slot-list {
+    display: flex;
+    margin: 5% 10%;
+
+    .save-slot-list-item {
+      display: inline-flex;
+      height: 75px;
+      width: 300px;
+      border: 2px solid colours.$light;
+      cursor: pointer;
+      transition: all .25s ease-out;
+      
+      &:hover {
+        background-color: colours.$light;
+        color: colours.$dark;
+      }
+
+      &:active {
+        background-color: colours.$dark;
+        color: colours.$light;
+        transition: none;
+      }
+    }
+
+    #new-game-button {
+      font-weight: bold;
+      align-items: center;
+      justify-content: space-around;
+      text-transform: uppercase;
+    }
   }
 
 }
