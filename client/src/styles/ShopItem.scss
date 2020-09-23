@@ -33,3 +33,9 @@
   }
 
 }
+
+.disabled-button:active{
+  background-color: colours.$rusty;
+  color: colours.$light;
+  transition: none;
+}

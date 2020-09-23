@@ -23,9 +23,8 @@ const ShopItem = (props) => {
 
   return (
     <div className="shop-item">
-      <div className="shop-item-button"
-           onClick={buy} 
-           disabled={!canAfford}>
+      <div className={canAfford ? "shop-item-button" : "shop-item-button disabled-button"}
+           onClick={buy}>
         Build {name}
       </div>
       <div className="shop-item-detail">
