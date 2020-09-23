@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Modal from 'react-modal';
+import { getSaveGames } from '../helpers/Request';
 import '../styles/SaveSelectionModal.scss';
 
 Modal.setAppElement("#root");
@@ -32,10 +33,9 @@ const SaveSelectionModal = (props) => {
 
 
   useEffect(() => {
-    fetch("/api/save-games")
-      .then(res => res.json())
-      .then(data => setSaveGames(data))
-      .then(setSaveGamesRetrieved(true)); 
+    getSaveGames()
+    .then(data => setSaveGames(data))
+    .then(setSaveGamesRetrieved(true));
   }, []);
 
   return (

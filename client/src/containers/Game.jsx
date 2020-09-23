@@ -3,19 +3,25 @@ import StoryDisplay from '../components/StoryDisplay';
 import ResourceTracker from '../components/ResourceTracker';
 import MainButton from '../components/MainButton';
 import Shop from './Shop';
-import { partsAutoclickers } from '../data/PartsAutoclickers'
-import { inspirationAutoclickers } from '../data/InspirationAutoclickers'
-import { storyStages } from '../data/StoryStages'
-import { storyText } from '../data/StoryText'
+import { partsAutoclickers } from '../data/PartsAutoclickers';
+import { inspirationAutoclickers } from '../data/InspirationAutoclickers';
+import { storyStages } from '../data/StoryStages';
+import { storyText } from '../data/StoryText';
+import { postSaveGame } from '../helpers/Request';
 
 const Game = (props) => {
 
   const winGame = props.winGame; // destructuring for use in useEffect
+  const saveData = props.saveData;
 
   // Elements will display when player has this fraction of the resources needed
-  const displayThreshold = 0.75 
+  const displayThreshold = 0.75;
+  // data will be saved at this interval (in ms)
+  const autoSaveInterval = 10000;
 
   // State hooks
+  const [saveSlotId, setSaveSlotId] = useState(null);
+  const [dataLoaded, setDataLoaded] = useState(false);
   const [introComplete, setIntroComplete] = useState(false);
   const [showShop, setShowShop] = useState(false);
   const [storyStage, setStoryStage] = useState(0)
@@ -78,8 +84,8 @@ const Game = (props) => {
     ownedInspirationAutoclickersT1 * inspirationAutoclickers.t1.productionBase
     + ownedInspirationAutoclickersT2 * inspirationAutoclickers.t2.productionBase
     + ownedInspirationAutoclickersT3 * inspirationAutoclickers.t3.productionBase
-    + ownedInspirationAutoclickersT4 * inspirationAutoclickers.t4.productionBase
-  
+    + ownedInspirationAutoclickersT4 * inspirationAutoclickers.t4.productionBase;
+
 
   // GameTick
   useEffect(() => {
@@ -89,6 +95,31 @@ const Game = (props) => {
     }, tickSpeed)
     return () => clearInterval(interval);  // clears interval during cleanup
   }, [parts, partsPerTick, inspiration, inspirationPerTick, tickSpeed]);
+
+  // Save Game
+  useEffect(() => {
+    const interval = setInterval(() => {
+      postSaveGame({
+        _id: saveSlotId,
+        storyStage: storyStage,
+        tickSpeed: tickSpeed,
+        parts: parts,
+        inspiration: inspiration,
+        ownedPartsAutoclickersT1: ownedPartsAutoclickersT1,
+        ownedPartsAutoclickersT2: ownedPartsAutoclickersT2,
+        ownedPartsAutoclickersT3: ownedPartsAutoclickersT3,
+        ownedPartsAutoclickersT4: ownedPartsAutoclickersT4,
+        ownedInspirationAutoclickersT1: ownedPartsAutoclickersT1,
+        ownedInspirationAutoclickersT2: ownedPartsAutoclickersT2,
+        ownedInspirationAutoclickersT3: ownedPartsAutoclickersT3,
+        ownedInspirationAutoclickersT4: ownedPartsAutoclickersT4
+      }).then(res => {
+        console.log('res._id :>> ', res._id);
+        if (!saveSlotId) setSaveSlotId(res._id);
+      })
+    }, autoSaveInterval);
+    return () => clearInterval(interval);
+  }, []);
 
   // intro
   useEffect(() => {
