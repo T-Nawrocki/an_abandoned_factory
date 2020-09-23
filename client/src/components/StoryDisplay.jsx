@@ -6,8 +6,8 @@ const StoryDisplay = (props) => {
   const newText = props.newText;
   const [display, setDisplay] = useState("");
 
-  const type = text => {
-    const typingSpeed = 100;
+  // const type = text => {
+  //   const typingSpeed = 100;
 
 
 
@@ -23,12 +23,13 @@ const StoryDisplay = (props) => {
     //   setTimeout(setDisplay(display + char), typingSpeed)
     // //   setDisplay(display + char);
     // }
-  };
+  // };
 
   useEffect(() => {
     setDisplay(display + newText);
     // type(newText)
-  }, [newText])
+    // eslint-disable-next-line
+  }, [newText]) 
 
   return (
     <div className="story-display">
