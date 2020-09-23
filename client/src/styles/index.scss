@@ -14,6 +14,11 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.App {
+  display: flex;
+  justify-items: center;
+}
+
 #game-container {
   display:flex;
   flex-direction: column;

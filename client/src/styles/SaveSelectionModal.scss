@@ -1,0 +1,36 @@
+@use 'common/colours';
+@use 'common/fonts';
+
+.save-selection-modal {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  right: 15%;
+  bottom: 10%;
+  border: 3px solid colours.$light;
+  // border-radius: 12px;
+  background: colours.$dark;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  outline: none;
+  padding: 20px;
+  box-shadow:  0 5px 15px 5px rgba(0,0,0, 0.25);
+
+  .story-display {
+    // justify-self: center;
+    align-self: center;
+    height: 25%;
+  }
+
+}
+
+.save-selection-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.25);
+}
