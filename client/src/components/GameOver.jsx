@@ -1,13 +1,17 @@
 import React from 'react';
+import useTypewriter from '../hooks/useTypewriter';
 import { storyText } from '../data/StoryText'
 
 const GameOver = (props) => {
+
+  const [display] = useTypewriter(storyText.winGame, 50)
+
   return (
     <div id="game-over">
       
       <div className="story-display">
         <div className="story-display-text">
-          {storyText.winGame}
+          {display}
         </div>
       </div>
       

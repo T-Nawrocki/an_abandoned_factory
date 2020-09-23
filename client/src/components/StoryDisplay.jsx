@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import useTypewriter from '../hooks/useTypewriter';
 import '../styles/StoryDisplay.scss';
 
 const StoryDisplay = (props) => {
-  
-  const newText = props.newText;
-  const [display, setDisplay] = useState("");
-  const typingSpeed = 50;
 
-  useEffect(() => {
-    if (display.length === newText.length) return;
-    const timeout = setTimeout(() => {
-      setDisplay(display + newText[display.length]);
-    }, typingSpeed);
-    return () => clearInterval(timeout);
-  }, [newText, display]) 
+  const [display] = useTypewriter(props.newText, 25);
 
   return (
     <div className="story-display">
