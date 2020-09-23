@@ -9,6 +9,8 @@ import { storyStages } from '../data/StoryStages'
 import { storyText } from '../data/StoryText'
 
 const Game = (props) => {
+
+  const saveSlot = props.data ? props.data.saveSlot : null;
   
   const winGame = props.winGame; // destructuring for use in useEffect
 
