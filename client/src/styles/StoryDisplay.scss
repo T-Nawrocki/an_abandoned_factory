@@ -14,7 +14,7 @@
   overflow: hidden;
 
   // MONITOR LINES
-  &::after {
+  &:after {
     content: "";
     position: absolute;
     top: 0;
@@ -43,14 +43,20 @@
   color: white;
   text-shadow: 0 0 5px #C8C8C8;
   font: 1.2rem fonts.$console;
-  //   border-right: .15em solid orange; /* The typwriter cursor */
-  //   margin: 0 auto; /* Gives that scrolling effect as the typing happens */
-  //   letter-spacing: .15em; /* Adjust as needed */
-  //   animation: 
-  //     typing 3.5s steps(40, end),
-  //   blink-caret .75s step-end infinite;
+  
+  &:after{
+    content: "|";
+    color: orange;
+    font-weight: bold;
+    animation: blink 500ms linear infinite alternate;
+  }
+
 }
 
+@keyframes blink {
+  0%, 40% {opacity: 0;}
+  60%, 100% {opacity: 1;} 
+}
 
 // /* The typing effect */
 // @keyframes typing {
@@ -58,9 +64,5 @@
 //   to { width: 100% }
 // }
 
-// /* The typewriter cursor effect */
-// @keyframes blink-caret {
-//   from, to { border-color: transparent }
-//   50% { border-color: orange; }
-// }
+
 
