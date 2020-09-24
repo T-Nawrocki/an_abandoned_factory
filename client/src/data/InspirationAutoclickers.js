@@ -2,28 +2,28 @@ export const inspirationAutoclickers = {
   t1: {
     name: "inventor's workshop",
     costResource: "parts",  
-    costBase: 10000, 
+    costBase: 75, 
     productionResource: "inspiration",
     productionBase: 1
   },
   t2: {
     name: "design lab",
     costResource: "parts",
-    costBase: 400000,
+    costBase: 1500,
     productionResource: "inspiration",
     productionBase: 50
   },
   t3: {
     name: "algorithmic analysis",
     costResource: "parts",
-    costBase: 2500000,
+    costBase: 3000,
     productionResource: "inspiration",
     productionBase: 750
   },
   t4: {
     name: "autonomous architect v.i.",
     costResource: "parts",
-    costBase: 50000000,
+    costBase: 5000,
     productionResource: "inspiration",
     productionBase: 15000
   }
