@@ -60,7 +60,6 @@
 
   }
 
-  // TODO make this cumulative rather than sequential
   &:active {
     animation: glow-pulse 0.2s ease-in-out;
   }
