@@ -58,11 +58,15 @@
   60%, 100% {opacity: 1;} 
 }
 
-// /* The typing effect */
-// @keyframes typing {
-//   from { width: 0 }
-//   to { width: 100% }
-// }
+
+#main-story-display {
+  animation: fade-in 5s linear;
+}
+
+@keyframes fade-in {
+  0%, 50% {opacity: 0;}
+  100% {opacity: 1;}
+}
 
 
 
