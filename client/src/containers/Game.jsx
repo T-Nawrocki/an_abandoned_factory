@@ -124,11 +124,19 @@ const Game = (props) => {
   // intro
   useEffect(() => {
     if (!introComplete) {
-      setNewStoryText(storyText.intro);
-      const timeout = setTimeout(() => {
+
+      const timeout1 = setTimeout(() => {
+        setNewStoryText(storyText.intro);
+      }, 10000);
+
+      const timeout2 = setTimeout(() => {
         setIntroComplete(true);
-      }, 5000);
-      return () => clearTimeout(timeout);
+      }, 53000);
+
+      return () => {
+        clearTimeout(timeout1);
+        clearTimeout(timeout2);
+      };
     }
   }, [introComplete]);
 

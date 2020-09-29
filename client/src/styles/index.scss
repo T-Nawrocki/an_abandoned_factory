@@ -12,6 +12,22 @@ body {
   user-select: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  &::-webkit-scrollbar {
+    width: 15px;
+  }
+  &::-webkit-scrollbar-track {
+    background: colours.$dark;
+    border-radius: 20px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,1);
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,1); 
+
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: colours.$light;
+    border-radius: 20px;
+  }
+
 }
 
 .App {
